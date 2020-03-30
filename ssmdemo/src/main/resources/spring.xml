@@ -11,7 +11,6 @@
     <context:component-scan base-package="cn.sd.ssmdemo">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-
     </context:component-scan>
 
 
@@ -29,7 +28,6 @@
         <property name="maxStatements" value="${jdbc.maxStatements}"></property>
         <property name="maxStatementsPerConnection" value="${jdbc.maxStatementsPerConnection}"></property>
     </bean>
-
 
     <!-- 事务配置 -->
     <bean id="transactionManager"
@@ -63,6 +61,6 @@
         <property name="mapperLocations" value="classpath:cn/sd/ssmdemo/dao/*.xml"></property>
     </bean>
 
-    <mybatis-spring:scan base-package="cn.ybzy.ssmweb.dao"/>
+    <mybatis-spring:scan base-package="cn.sd.ssmdemo.dao"/>
 
 </beans>
