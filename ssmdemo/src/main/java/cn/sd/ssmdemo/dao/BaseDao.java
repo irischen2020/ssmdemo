@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface BaseDao {
 	//增删改查
-	public void add(@Param("tableName") String tableName,@Param("objects") Object... objects);
+	public void add(@Param("tableName") String tableName,@Param("objects") Object[] objects);
 	
 	public void delete(@Param("tableName") String tableName,@Param("id") Integer id);
 	
