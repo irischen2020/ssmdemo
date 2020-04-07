@@ -1,4 +1,4 @@
 package cn.sd.ssmdemo.dao;
 
-public interface UserDao {
+public interface BaseDao {
 }
