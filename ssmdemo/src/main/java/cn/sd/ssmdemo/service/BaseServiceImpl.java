@@ -82,6 +82,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 			}
 			
 		}
+		getBaseDao().update(tableName,id,list.toArray());
 	}
 	
 	public T select(int id) {
