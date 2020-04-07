@@ -30,7 +30,7 @@
         <property name="maxStatementsPerConnection" value="${jdbc.maxStatementsPerConnection}"></property>
     </bean>
 
-    <!--事务管理器-->
+
     <!-- 事务配置 -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -56,11 +56,10 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
     </aop:config>
 
-    <!-- 整合Mybatis ,指定数据源和配置文件路径-->
+    <!-- 整合Mybatis -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
-        <!--自动扫描mapping.xml文件-->
         <property name="mapperLocations" value="classpath:cn/sd/ssmdemo/dao/*.xml"></property>
     </bean>
 
