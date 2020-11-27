@@ -39,17 +39,17 @@
     </environments>
 
     <!--引入我们自己编写的每个接口的实现文件-->
-    <mappers>
-        <!--resource表示从类路径下找资源-->
-        <mapper resource="cn/sd/ssmdemo/dao/EmployeeDao.xml"/>
+    <!--<mappers>-->
+        <!--&lt;!&ndash;resource表示从类路径下找资源&ndash;&gt;-->
+        <!--<mapper resource="cn/sd/ssmdemo/dao/EmployeeDao.xml"/>-->
 
-    </mappers>
+    <!--</mappers>-->
 
     <!--可以采用批量注册,要试一下批量注册.批量注册时，XML文件需要和Dao接口同包下。
     采用另外一种方法：在类路径下，建一个同名的包，包里面放所有的XML文件-->
-    <!--<mappers>-->
-        <!--<package name="cn.sd.ssmdemo.dao"></package>-->
-    <!--</mappers>-->
+    <mappers>
+        <package name="cn.sd.ssmdemo.dao"></package>
+    </mappers>
 
 
 </configuration>
