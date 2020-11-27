@@ -5,3 +5,33 @@ Spring的配置文件来配置和业务有关的（事务控制，数据源，�
 2、SpringMVC和Spring分容器：
 Spring管理业务逻辑组件；除了controller不要。包扫描时
 SpringMVC管理控制器组件；controller。包扫描时
+
+3、mybatis是持久层框架（SQL映射框架）－操作数据库
+1）导包；
+2）写配置 ：
+第一个配置： mybatis-config.xml文件，称为MYBATIS的全局配置文件，指导mybatis如何正确运行，比如连接向哪个数据库；
+第二个配置：编写第一个方法都如何向数据库发送SQL语句，如何执行,相当于接口的实现类.
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--名称空间：写接口的全类名-->
+<mapper namespace="cn.sd.ssmdemo.dao.EmployeeDao">
+    <!--用来定义一个查询操作
+    public Employee getEmpById(Integer id);-->
+    <select id="getEmpById" resultType="cn.sd.ssmdemo.model.Employee">
+        select * from t_employee where id = #{id}
+    </select>
+</mapper>
+
+第三步：写的DAO接口的实现文件，MYBATIS默认是不知道的，需要在全局配置文件中注册.
+
+
+测试：
+
+
+
+
+
+

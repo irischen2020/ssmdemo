@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--名称空间：写接口的全类名-->
+<mapper namespace="cn.sd.ssmdemo.dao.EmployeeDao">
+    <!--用来定义一个查询操作
+    public Employee getEmpById(Integer id);-->
+    <select id="getEmpById" resultType="cn.sd.ssmdemo.model.Employee">
+        select * from t_employee where id = #{id}
+    </select>
+
+    <!--	public Employee getEmpById(Integer id);
+
+	public int updateEmployee(Employee employee);
+
+	public int insertEmployee(Employee employee);
+
+	public int deleteEmployee(Integer id);-->
+
+    <update id="updateEmployee" >
+        update t_employee
+        set empname = #{empName}
+        and gender = #{gender}
+        and email = #{email}
+        where id = #{id}
+    </update>
+    <insert id="insertEmployee">
+        insert into t_employee(empname,gender,email)
+        values(#{empName},#{gender},#{email})
+    </insert>
+    <delete id="deleteEmployee">
+        delete from t_employee where id=#{id}
+    </delete>
+</mapper>

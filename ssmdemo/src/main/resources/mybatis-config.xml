@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--引用外部配置文件-->
+    <properties resource="jdbc.properties">
+    </properties>
+    
     <!-- 设置参数 -->
     <settings>
         <!--  开启驼峰匹配：完成经典的数据库命名到java属性的映射
@@ -10,47 +14,42 @@
         -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+    <!--类型别名：为常用的类型即实体类，取别名-->
+    <typeAliases>
+        <!--下面这个标签就是为一个JAVA实体类起别名，别名默认就是类名,那么在其它地方用到这个类型时，直接使用别名就可以了。
+        如在EmployeeDao.xml中用到，直接使用类名即可-->
+        <!--<typeAlias type="cn.sd.ssmdemo.model.Employee"/>-->
+
+        <!--用以下方式可以批量起别名，默认别名就是类名。实际使用时不推荐起别名，全部用全类名-->
+        <!--<package name="cn.sd.ssmdemo.model"/>-->
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+
+            <!--配置连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driverClass}"/>
+                <property name="url" value="${jdbc.jdbcUrl}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--引入我们自己编写的每个接口的实现文件-->
+    <mappers>
+        <!--resource表示从类路径下找资源-->
+        <mapper resource="cn/sd/ssmdemo/dao/EmployeeDao.xml"/>
+
+    </mappers>
+
+    <!--可以采用批量注册,要试一下批量注册.批量注册时，XML文件需要和Dao接口同包下。
+    采用另外一种方法：在类路径下，建一个同名的包，包里面放所有的XML文件-->
+    <!--<mappers>-->
+        <!--<package name="cn.sd.ssmdemo.dao"></package>-->
+    <!--</mappers>-->
+
 
 </configuration>
-
-
-<!--<configuration>-->
-<!--&lt;!&ndash; 引入外部资源文件-->
-    <!--resource:默认引入classpath路径下的资源文件-->
-    <!--url：引入物理路径下的资源文件（如：d:\\jdbc.properties）-->
- <!--&ndash;&gt;-->
-<!--<properties resource="jdbc.properties"></properties>-->
-<!--&lt;!&ndash; 设置参数 &ndash;&gt;-->
-<!--<settings>-->
-    <!--&lt;!&ndash;  开启驼峰匹配：完成经典的数据库命名到java属性的映射-->
-                      <!--相当于去掉数据中的名字的下划线，和java进行匹配-->
-    <!--&ndash;&gt;-->
-    <!--<setting name="mapUnderscoreToCamelCase" value="true"/>-->
-<!--</settings>-->
-<!--&lt;!&ndash; 配置别名 &ndash;&gt;-->
-<!--<typeAliases>-->
-    <!--&lt;!&ndash; typeAlias:用来配置别名，方便映射文件使用，type:类的全限定类名,alias:别名 &ndash;&gt;-->
-    <!--<typeAlias type="cn.itcast.pojo.User" alias="User"/>-->
-<!--</typeAliases>-->
-<!--&lt;!&ndash; 配置环境：可以配置多个环境，default：配置某一个环境的唯一标识，表示默认使用哪个环境 &ndash;&gt;-->
-<!--<environments default="development">-->
-    <!--&lt;!&ndash; 配置环境,id:环境的唯一标识 &ndash;&gt;-->
-    <!--<environment id="development">-->
-        <!--&lt;!&ndash; 事务管理器，type:使用jdbc的事务管理器 &ndash;&gt;-->
-        <!--<transactionManager type="JDBC" />-->
-        <!--&lt;!&ndash; 数据源，type:池类型的数据源 &ndash;&gt;-->
-        <!--<dataSource type="POOLED">-->
-            <!--&lt;!&ndash; 配置连接信息 &ndash;&gt;-->
-            <!--<property name="driver" value="${jdbc.driverClass}" />-->
-            <!--<property name="url" value="${jdbc.url}" />-->
-            <!--<property name="username" value="${jdbc.username}" />-->
-            <!--<property name="password" value="${jdbc.password}" />-->
-        <!--</dataSource>-->
-    <!--</environment>-->
-<!--</environments>-->
-<!--&lt;!&ndash; 配置映射文件：用来配置sql语句和结果集类型等 &ndash;&gt;-->
-<!--<mappers>-->
-    <!--<mapper resource="UserMapper.xml" />-->
-    <!--<mapper resource="UserDaoMapper.xml" />-->
-<!--</mappers>-->
-<!--</configuration>-->
