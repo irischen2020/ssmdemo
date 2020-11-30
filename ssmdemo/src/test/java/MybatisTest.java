@@ -1,9 +1,11 @@
 import cn.sd.ssmdemo.dao.CatDao;
 import cn.sd.ssmdemo.dao.EmployeeDao;
 import cn.sd.ssmdemo.dao.KeyDao;
+import cn.sd.ssmdemo.dao.LockDao;
 import cn.sd.ssmdemo.model.Cat;
 import cn.sd.ssmdemo.model.Employee;
 import cn.sd.ssmdemo.model.Key;
+import cn.sd.ssmdemo.model.Lock;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
@@ -141,7 +143,7 @@ public class MybatisTest {
 	
 	/**
 	 * 联合查询情况下：
-	 * 1、使用级联属性封闭联合查询后的所有结果；
+	 * 1、使用级联属性封装联合查询后的所有结果；
 	 *
 	 *
 	 */
@@ -150,11 +152,23 @@ public class MybatisTest {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		KeyDao keyDao = sqlSession.getMapper(KeyDao.class);
 		try{
-			Key key = keyDao.getKeyById(1);
+			Key key = keyDao.getKeyById(2);
 			System.out.println(key);
 		}finally {
 			sqlSession.close();
 		}
 	}
-
+	
+	@Test
+	public void testGetLockById(){
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		LockDao lockDao = sqlSession.getMapper(LockDao.class);
+		try{
+			Lock lock = lockDao.getLockById(3);
+			System.out.println(lock);
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
 }

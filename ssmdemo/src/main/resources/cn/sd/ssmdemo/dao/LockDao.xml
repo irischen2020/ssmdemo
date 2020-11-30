@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--名称空间：写接口的全类名-->
+<mapper namespace="cn.sd.ssmdemo.dao.LockDao">
+    <!--用来定义一个查询操作。多表联合查询。
+    第一种方法：使用级联属性封装 联合查询后的所有结果
+   public Lock getLockById(Integer id);-->
+    <select id="getLockById" resultMap="mylock">
+       select l.id lid,l.lockName,k.lockid,k.id kid,k.keyname
+        from t_lock l
+        left join t_key k
+        on k.lockid = l.id
+        where l.id = #{id}
+    </select>
+
+
+    <!--第二种方法：mybatis推荐使用的association property=""属性-->
+    <resultMap id="mylock" type="cn.sd.ssmdemo.model.Lock">
+        <id property="id" column="lid"></id>
+        <result property="lockName" column="lockName"></result>
+        <!--定义集合元素的封装-property也是JAVABEAN中定义的属性名称
+            ofType:指定集合里面元素的类型-->
+        <collection property="keys" ofType="cn.sd.ssmdemo.model.Key">
+            <id property="id" column="kid"></id>
+            <result property="keyName" column="keyname"></result>
+        </collection>
+
+    </resultMap>
+
+
+</mapper>
