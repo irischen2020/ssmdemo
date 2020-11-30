@@ -33,4 +33,33 @@
     <delete id="deleteEmployee">
         delete from t_employee where id=#{id}
     </delete>
+
+    <!--public Map<String,Object> getEmmByIdReturnMap(Integer id);返回的单条数据的MAP,直接返回值类型resultType写map即可
+
+	public List<Employee> getAllEmps();返回的list集合，返回值类型写list集合中存储的数据类型;
+
+	public Map<Integer,Employee> getAllEmpsReturnMap(); 查询出所有数据，返回MAP，指定MAP中ID为KEY，Employee对象为value。
+	    同样返回值类型，应该指定为集合里面元素的类型。此处也是指定为Employee对象
+		-->
+
+    <select id="getEmmByIdReturnMap" resultType="map">
+        select * from t_employee
+        where id=#{id}
+    </select>
+
+    <select id="getAllEmps" resultType="cn.sd.ssmdemo.model.Employee">
+        select * from t_employee
+    </select>
+
+    <select id="getAllEmpsReturnMap" resultType="cn.sd.ssmdemo.model.Employee">
+        select * from t_employee
+    </select>
+
+    <!--自定义结果集(resultMap):自己定义数据库表中每一列数据和javaBean的映射规则
+        type="":指定为哪个javaBean自定义封装规则，写全类名
+        id="":唯一标识 ：让别名在后面引用的标识
+        id    cName   cAge   cgender
+        1      加匪猫    12      0
+        -->
+
 </mapper>

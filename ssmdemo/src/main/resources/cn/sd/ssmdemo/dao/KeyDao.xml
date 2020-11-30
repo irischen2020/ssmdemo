@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--名称空间：写接口的全类名-->
+<mapper namespace="cn.sd.ssmdemo.dao.KeyDao">
+    <!--用来定义一个查询操作。多表联合查询
+   public Key getKeyById(Integer id);-->
+    <select id="getKeyById" resultMap="mykey">
+        select k.id kid,k.keyname,k.lockid lid,l.lockName
+        from t_key k
+        left join t_lock l
+        on k.id = l.id
+        where k.id = #{id}
+    </select>
+    <resultMap id="mykey" type="cn.sd.ssmdemo.model.Key">
+        <id property="id" column="kid"></id>
+        <result property="keyName" column="keyname"></result>
+        <result property="lock.id" column="lid"></result>
+        <result property="lock.lockName" column="lockName"></result>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--名称空间：写接口的全类名-->
+<mapper namespace="cn.sd.ssmdemo.dao.CatDao">
+    <!--用来定义一个查询操作
+   public Cat getOneCatById(Integer id);-->
+    <select id="getOneCatById" resultMap="mycat">
+        select * from t_cat where id = #{id}
+    </select>
+
+    <!--自定义结果集(resultMap):自己定义数据库表中每一列数据和javaBean的映射规则
+        type="":指定为哪个javaBean自定义封装规则，写全类名
+        id="":唯一标识 ：让别名在后面引用的标识
+        id    cName   cAge   cgender
+        1      ss    12      0
+
+        property:在javaBean中定义的属性的名字；
+        column:在数据库表中定义的字段名字；
+        -->
+    <resultMap type="cn.sd.ssmdemo.model.Cat" id="mycat" >
+        <!--指定主键列的对应规则-->
+        <id property="id" column="id"></id>
+        <!--普通列-->
+        <result property="name" column="cName"></result>
+        <result property="age" column="cAge"></result>
+        <result property="gender" column="cgender"></result>
+
+    </resultMap>
+
+</mapper>
