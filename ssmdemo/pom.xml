@@ -162,6 +162,7 @@
                     <include>**/*.yml</include>
                     <include>**/*.xml</include>
                 </includes>
+                <filtering>false</filtering>
             </resource>
         </resources>
 
