@@ -2,10 +2,12 @@ package cn.sd.ssmdemo.dao;
 
 import cn.sd.ssmdemo.model.Employee;
 import org.apache.ibatis.annotations.MapKey;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
+@Component
 public interface EmployeeDao {
 	//根据员工ID查出员工
 	public Employee getEmpById(Integer id);

@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-
+<a href="getTea?bid=1">查询employee</a>
 </body>
 </html>

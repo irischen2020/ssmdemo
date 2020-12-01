@@ -16,7 +16,7 @@ public class MyBatisTest2 {
 	@Before
 	public void init() throws IOException {
 		//		1、根据全局配置文件创建出一个SqlSessionFactory
-		String resource = "mybatis-config.xml";
+		String resource = "mybatis-config1.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
