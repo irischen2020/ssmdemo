@@ -7,22 +7,29 @@
        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
   http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd ">
 
-    <!--配置注解扫描的范围-->
+    <!--配置注解扫描的范围:Springmvc只扫描控制器，禁用默认的规则-->
     <context:component-scan base-package="cn.sd.ssmdemo" use-default-filters="false">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
+
     <!--要为SPRINGMVC的默认的视图解析器配置前后缀-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/jsp/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
 
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <!--配置文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxUploadSize" value="#{1024*1024*20}"></property>
+    </bean>
 
-    <!--对静态资源的处理的注解-->
+    <!--扫静态资源：对静态资源的处理的注解-->
     <mvc:default-servlet-handler/>
+    <!--扫动态资源-->
+    <mvc:annotation-driven></mvc:annotation-driven>
 
 </beans>

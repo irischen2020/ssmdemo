@@ -1,0 +1,7 @@
+1、导包
+2、写配置：
+0) web.xml配置
+1）spring配置：
+2）springmvc配置：
+3）mybatis配置：
+4）其它小配置：
